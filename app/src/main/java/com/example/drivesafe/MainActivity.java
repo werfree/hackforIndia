@@ -292,14 +292,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void sendMessageArray(String[] placeArray){
+        Log.e("Location",latitude+" "+longtitude);
         Toast.makeText(MainActivity.this,placeArray[0],Toast.LENGTH_LONG).show();
 
         String placeName="";
-        int length = placeArray.length>3 ? 3 : placeArray.length;
+        int length = placeArray.length>4 ? 4 : placeArray.length;
 
 
-        for (int i=1;i<=length;i++){
-            placeName+="\n"+i+". "+placeArray[i-1];
+        for (int i=2;i<=length;i++){
+            placeName+="\n"+(i-1)+". "+placeArray[i-1];
         }
         Log.e("Length",String.valueOf(placeName));
 
@@ -340,7 +341,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
         } catch (Exception e) {
-            Toast.makeText(this, "Send Message Error", Toast.LENGTH_LONG).show();
+            Toast.makeText(
+
+                    this, "Send Message Error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -653,25 +656,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         //return;
 
                         List<Place.Field> placeFields = Arrays.asList(Place.Field.PHONE_NUMBER);
-                        FetchPlaceRequest placeRequest = FetchPlaceRequest.newInstance(place_id, placeFields);
+                        FetchPlaceRequest placeRequest = FetchPlaceRequest.newInstance(id, placeFields);
 
 
                         String finalPlaceName = placeName;
                         String finalPlaceName1 = placeName;
 
                         //Number of Police Station
-                        /*
 
-                        placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
+
+                       /* placesClient.fetchPlace(placeRequest).addOnSuccessListener((response) -> {
                             Log.e("Place",String.valueOf(response.getPlace()));
                             Place places = response.getPlace();
                             String no;
                             no=places.getPhoneNumber();
 
+
                             if(no!=null && k[0]==0) {
                                 k[0]=1;
                                 Log.e("Place: ",finalPlaceName+" "+no);
                                 sendMessage(no,finalPlaceName,"1");
+
 
 
                             }
@@ -748,6 +753,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onLocationChanged(Location location) {
+        latitude = (location.getLatitude());
+        longtitude = location.getLongitude();
+        latitudeView.setText(String.valueOf(latitude));
+        longtitudeView.setText(String.valueOf(longtitude));
+        Toast.makeText(this,"Update",Toast.LENGTH_LONG).show();
 
     }
 
