@@ -1,0 +1,24 @@
+{
+  "name": "drive_safe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/werfree/hackforIndia.git"
+  },
+  "author": "SAyantan GHosh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/werfree/hackforIndia/issues"
+  },
+  "homepage": "https://github.com/werfree/hackforIndia#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.11"
+  }
+}
