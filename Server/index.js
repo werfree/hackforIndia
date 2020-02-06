@@ -9,6 +9,7 @@
 var express = require("express");
 var mongoose = require("mongoose");
 const app = express();
+const bodyParser = require("body-parser");
 var postRouter = require("./routes/post");
 
 // Environment variables
@@ -16,6 +17,9 @@ var postRouter = require("./routes/post");
 require("dotenv/config");
 
 // Middle Ware
+
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 app.use("/post", postRouter);
 
