@@ -32,8 +32,13 @@ app.get("/", (req, res) => {
 
 //Connect to DB
 
-mongoose.connect(process.env.connect, { useNewUrlParser: true }, () => {
-  console.log("Connect to DB");
+mongoose.connect(process.env.connect, { useNewUrlParser: true }, err => {
+  if (err) {
+    console.log("Unable to connect to Db");
+    process.exit;
+  } else {
+    console.log("Connect to DB");
+  }
 });
 
 // Listning

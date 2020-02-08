@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const PostSchema = mongoose.Schema({
-  dicLocation: {
+  _id: {
     type: "String",
     required: true
   }
 });
 
-module.exports = mongoose.model("drivesafe", PostSchema, "dicLocation");
+module.exports = mongoose.model("drivesafe", PostSchema, "diclocation");

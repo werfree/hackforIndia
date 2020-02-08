@@ -11,7 +11,11 @@ const PostSchema = mongoose.Schema({
   },
   phone: {
     type: String
+  },
+  date: {
+    type: Date,
+    required: Date.now
   }
 });
 
-module.exports = mongoose.model("drivedafe", PostSchema, "geodatas");
+module.exports = mongoose.model("location", PostSchema, "diclocations");
