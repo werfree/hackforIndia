@@ -29,6 +29,10 @@ app.get("/", (req, res) => {
   res.send("We are on home");
   console.log(process.env.connect);
 });
+app.post("/", (req, res) => {
+  res.send("We are on home post");
+  console.log(process.env.connect);
+});
 
 //Connect to DB
 
@@ -43,4 +47,4 @@ mongoose.connect(process.env.connect, { useNewUrlParser: true }, err => {
 
 // Listning
 
-app.listen(3000);
+app.listen(3000, "192.168.31.118");

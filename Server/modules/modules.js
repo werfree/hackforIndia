@@ -40,3 +40,13 @@ exports.findId = (id, callback) => {
     callback(a);
   });
 };
+/*
+exports.cor = (post, dic,callback) => {
+  this.findId("cList",(msg)=>{
+    if(msg.message=="Error" || msg.message==null){
+      this.insertId("cList");
+    }
+  })
+
+};
+*/

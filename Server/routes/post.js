@@ -11,14 +11,41 @@ var fun = require("../modules/modules");
 var db = mongoose.connection;
 
 // Date
-
+/*
+ a.push({ status: "OK" });
+        a.push({ result: {} });
+        for (var i = 0; i < results.length; i++) {
+          k = results[i]._id;
+          c = results[i].count;
+          console.log(k, c);
+        }
+        */
 var d = new Date();
+
 router.get("/", (req, res) => {
-  res.send("We are on post");
+  var a = {};
+  db.collection("diclocation")
+    .find({})
+    .toArray(function(err, results) {
+      if (err) a = Object.assign({ status: err });
+      else {
+        a = Object.assign({ status: "OK", result: [] });
+
+        for (var i = 0; i < results.length; i++) {
+          k = results[i]._id;
+          c = results[i].count;
+          a.result.push({ _id: k, count: c });
+          console.log(a, c);
+          /*l = a[0];
+          l.results[0].push({ k: c });*/
+        }
+        res.send(a);
+      }
+    });
 });
 
 router.post("/", (req, res) => {
-  api.policeAPI("20", "80");
+  //api.policeAPI("20", "80");
   const post = {
     id: Date.now(),
     latitude: req.body.latitude,
@@ -29,7 +56,10 @@ router.post("/", (req, res) => {
     _id: post.latitude.slice(0, 7) + " " + post.longtitude.slice(0, 7),
     count: 1,
     time: Date.now(),
-    police: ""
+    police: {
+      len: 1,
+      1: 100
+    }
   };
   //console.log(post[0].latitude + " " + post[0].longtitude);
 
@@ -48,7 +78,7 @@ router.post("/", (req, res) => {
           fun.updateId(dic, post, 0, err => {
             if (err) {
               console.log("Error");
-              req.statusCode(400);
+              req.statusCode(200);
               req.send({ message: "error" });
             } else {
               console.log("updateId Done");
